@@ -21,8 +21,8 @@
 
     <TextView
         android:id="@+id/authorText"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
+        android:layout_width="206dp"
+        android:layout_height="30dp"
         android:layout_marginHorizontal="16dp"
         app:layout_constraintStart_toEndOf="@+id/iconAuthor"
         app:layout_constraintTop_toTopOf="@+id/iconAuthor"
@@ -104,5 +104,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageLikes" />
+
+    <Button
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="МЕНЮ"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
