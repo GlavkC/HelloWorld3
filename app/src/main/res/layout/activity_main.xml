@@ -5,114 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/iconAuthor"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:cropToPadding="true"
-        android:scaleType="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_author_foreground"
-        tools:scrCompat="@sample/posts_avatars" />
-
-    <TextView
-        android:id="@+id/authorText"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginHorizontal="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/menu"
-        app:layout_constraintStart_toEndOf="@+id/iconAuthor"
-        app:layout_constraintTop_toTopOf="@+id/iconAuthor"
-        tools:text="Название поста" />
-
-    <TextView
-        android:id="@+id/authorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        app:layout_constraintStart_toEndOf="@+id/iconAuthor"
-        app:layout_constraintTop_toBottomOf="@+id/authorText"
-        tools:text="Имя автора" />
-
-    <TextView
-        android:id="@+id/postText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста. Огромная стена текста."
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/postsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/authorName" />
-
-    <ImageView
-        android:id="@+id/imageLikes"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postText"
-        app:srcCompat="@drawable/image_favorite_foreground" />
-
-    <TextView
-        android:id="@+id/intLikes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:text="999999"
-        app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
-        app:layout_constraintStart_toEndOf="@+id/imageLikes"
-        app:layout_constraintTop_toTopOf="@+id/imageLikes" />
-
-    <TextView
-        android:id="@+id/intSent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:text="999"
-        app:layout_constraintBottom_toBottomOf="@+id/imageSent"
-        app:layout_constraintStart_toEndOf="@+id/imageSent"
-        app:layout_constraintTop_toTopOf="@+id/imageSent" />
-
-    <ImageView
-        android:id="@+id/imageSent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
-        app:layout_constraintStart_toEndOf="@+id/intLikes"
-        app:layout_constraintTop_toTopOf="@+id/imageLikes"
-        app:srcCompat="@android:drawable/ic_menu_send" />
-
-    <ImageView
-        android:id="@+id/imageLook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
-        app:layout_constraintEnd_toStartOf="@+id/intLook"
-        app:layout_constraintTop_toTopOf="@+id/imageLikes"
-        app:srcCompat="@android:drawable/ic_menu_search" />
-
-    <TextView
-        android:id="@+id/intLook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="999"
-        app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageLikes" />
-
-    <Button
-        android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="МЕНЮ"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

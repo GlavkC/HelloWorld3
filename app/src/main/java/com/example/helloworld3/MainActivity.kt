@@ -5,20 +5,174 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.helloworld3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var isLiked = false
-    private var likeCount = 999999
-    private var shareCount = 999
-    private var viewCount = 99
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: PostAdapter
+
+    private val posts = listOf(
+        Post(
+            id = 1,
+            authorName = "Тима",
+            authorText = "Мой первый пост",
+            postText = "Это мой первый пост в этом приложении!",
+            published = "5 минут назад",
+            likeCount = 15,
+            shareCount = 3,
+            viewCount = 100
+        ),
+        Post(
+            id = 2,
+            authorName = "Дима",
+            authorText = "Поддержка стен текста",
+            postText = "увы, но из проекта были удалены все стены текста.",
+            published = "2 часа назад",
+            likedByMe = true,
+            likeCount = 42,
+            shareCount = 7,
+            viewCount = 256
+        ),
+        Post(
+            id = 3,
+            authorName = "Саша",
+            authorText = "Новости",
+            postText = "Внимание, в Москве пройдет концерт Тимофея Тимофекова Тимофеевича в 9.59!",
+            published = "1 день назад",
+            likeCount = 89,
+            shareCount = 12,
+            viewCount = 543
+        ),
+        Post(
+            id = 4,
+            authorName = "Wolf",
+            authorText = "Правила волка",
+            postText = "первое, не надо быть серым волком.",
+            published = "3 дня назад",
+            likeCount = 127,
+            shareCount = 25,
+            viewCount = 892
+        ),
+        Post(
+            id = 5,
+            authorName = "Clone0",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        ),
+        Post(
+            id = 6,
+            authorName = "Clone1",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        ),
+        Post(
+            id = 7,
+            authorName = "Clone2",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        ),
+        Post(
+            id = 8,
+            authorName = "Clone3",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        ),
+        Post(
+            id = 9,
+            authorName = "Clone4",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        ),
+        Post(
+            id = 10,
+            authorName = "Clone5",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        ),
+        Post(
+            id = 11,
+            authorName = "Clone6",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        ),
+        Post(
+            id = 12,
+            authorName = "Clone7",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        ),
+        Post(
+            id = 13,
+            authorName = "Clone8",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        ),
+        Post(
+            id = 14,
+            authorName = "Clone9",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        ),
+        Post(
+            id = 15,
+            authorName = "Clone10",
+            authorText = "О нет это набег ботов",
+            postText = "Злые боты захватили посты как же нам быть!!!",
+            published = "4 дня назад",
+            likeCount = 999,
+            shareCount = 666,
+            viewCount = 333
+        )
+
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
@@ -27,68 +181,24 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        updateCounts(binding)
-
-        binding.main.setOnClickListener {
-            println("Обработчик binding.main сработал")
-        }
-
-        binding.imageLikes.setOnClickListener {
-            isLiked = !isLiked
-
-            if (isLiked) {
-                likeCount++
-                binding.imageLikes.setImageResource(android.R.drawable.btn_star_big_on)
-            } else {
-                likeCount--
-                binding.imageLikes.setImageResource(android.R.drawable.btn_star_big_off)
-            }
-
-            binding.intLikes.text = formatNumber(likeCount)
-            println("Обработчик лайков сработал: $likeCount")
-        }
-
-        binding.imageSent.setOnClickListener {
-            shareCount++
-            binding.intSent.text = formatNumber(shareCount)
-            println("Обработчик репостов сработал: $shareCount")
-        }
-
-        binding.imageLook.setOnClickListener {
-            viewCount++
-            binding.intLook.text = formatNumber(viewCount)
-            println("Обработчик просмотров сработал: $viewCount")
-        }
-
-        binding.iconAuthor.setOnClickListener {
-            println("Обработчик аватарки сработал")
-        }
-
-        binding.menu.setOnClickListener {
-            println("Обработчик меню сработал")
-        }
+        setupRecyclerView()
     }
 
-    private fun updateCounts(binding: ActivityMainBinding) {
-        binding.intLikes.text = formatNumber(likeCount)
-        binding.intSent.text = formatNumber(shareCount)
-        binding.intLook.text = formatNumber(viewCount)
-    }
+    private fun setupRecyclerView() {
+        adapter = PostAdapter(
+            onLikeListener = OnLikeListener { postId ->
+                println("Лайк нажат для поста $postId")
+            },
+            onShareListener = OnShareListener { postId ->
+                println("Репост нажат для поста $postId")
+            }
+        )
 
-    private fun formatNumber(number: Int): String {
-        return when {
-            number < 1000 -> number.toString()
-            number < 10000 -> {
-                val thousands = number / 1000
-                val hundreds = (number % 1000) / 100
-                if (hundreds > 0) "$thousands.${hundreds}K" else "${thousands}K"
-            }
-            number < 1000000 -> "${number / 1000}K"
-            else -> {
-                val millions = number / 1000000
-                val hundredThousands = (number % 1000000) / 100000
-                if (hundredThousands > 0) "$millions.${hundredThousands}M" else "${millions}M"
-            }
+        binding.postsRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = this@MainActivity.adapter
         }
+
+        adapter.submitList(posts)
     }
 }
