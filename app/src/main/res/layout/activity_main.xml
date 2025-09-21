@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
-        android:text="15"
+        android:text="999999"
         app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
         app:layout_constraintStart_toEndOf="@+id/imageLikes"
         app:layout_constraintTop_toTopOf="@+id/imageLikes" />
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
-        android:text="7"
+        android:text="999"
         app:layout_constraintBottom_toBottomOf="@+id/imageSent"
         app:layout_constraintStart_toEndOf="@+id/imageSent"
         app:layout_constraintTop_toTopOf="@+id/imageSent" />
@@ -101,7 +101,7 @@
         android:id="@+id/intLook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="25"
+        android:text="999"
         app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageLikes" />
@@ -115,3 +115,4 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
