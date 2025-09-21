@@ -21,9 +21,10 @@
 
     <TextView
         android:id="@+id/authorText"
-        android:layout_width="206dp"
+        android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/menu"
         app:layout_constraintStart_toEndOf="@+id/iconAuthor"
         app:layout_constraintTop_toTopOf="@+id/iconAuthor"
         tools:text="Название поста" />
@@ -112,6 +113,5 @@
         android:text="МЕНЮ"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
