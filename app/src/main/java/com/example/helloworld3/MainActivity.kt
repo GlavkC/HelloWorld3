@@ -1,95 +1,78 @@
 package com.example.helloworld3
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.helloworld3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var rootLayout: ConstraintLayout
-    private lateinit var imageLikes: ImageView
-    private lateinit var intLikes: TextView
-    private lateinit var imageSent: ImageView
-    private lateinit var intSent: TextView
-    private lateinit var imageLook: ImageView
-    private lateinit var intLook: TextView
-    private lateinit var iconAuthor: ImageView
-    private lateinit var menuButton: Button
 
     private var isLiked = false
     private var likeCount = 999999
     private var shareCount = 999
-    private var viewCount = 999
+    private var viewCount = 99
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
 
-        rootLayout = findViewById(R.id.main)
-        imageLikes = findViewById(R.id.imageLikes)
-        intLikes = findViewById(R.id.intLikes)
-        imageSent = findViewById(R.id.imageSent)
-        intSent = findViewById(R.id.intSent)
-        imageLook = findViewById(R.id.imageLook)
-        intLook = findViewById(R.id.intLook)
-        iconAuthor = findViewById(R.id.iconAuthor)
-        menuButton = findViewById(R.id.menu)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        updateCounts()
+        updateCounts(binding)
 
-        imageLikes.setOnClickListener {
+        binding.main.setOnClickListener {
+            println("Обработчик binding.main сработал")
+        }
+
+        binding.imageLikes.setOnClickListener {
             isLiked = !isLiked
 
             if (isLiked) {
                 likeCount++
-                imageLikes.setImageResource(android.R.drawable.btn_star_big_on)
+                binding.imageLikes.setImageResource(android.R.drawable.btn_star_big_on)
             } else {
                 likeCount--
-                imageLikes.setImageResource(android.R.drawable.btn_star_big_off)
+                binding.imageLikes.setImageResource(android.R.drawable.btn_star_big_off)
             }
 
-            intLikes.text = formatNumber(likeCount)
+            binding.intLikes.text = formatNumber(likeCount)
             println("Обработчик лайков сработал: $likeCount")
         }
 
-        imageSent.setOnClickListener {
+        binding.imageSent.setOnClickListener {
             shareCount++
-            intSent.text = formatNumber(shareCount)
+            binding.intSent.text = formatNumber(shareCount)
             println("Обработчик репостов сработал: $shareCount")
         }
 
-        imageLook.setOnClickListener {
+        binding.imageLook.setOnClickListener {
             viewCount++
-            intLook.text = formatNumber(viewCount)
+            binding.intLook.text = formatNumber(viewCount)
             println("Обработчик просмотров сработал: $viewCount")
         }
 
-        iconAuthor.setOnClickListener {
+        binding.iconAuthor.setOnClickListener {
             println("Обработчик аватарки сработал")
         }
 
-        menuButton.setOnClickListener {
+        binding.menu.setOnClickListener {
             println("Обработчик меню сработал")
         }
     }
 
-    private fun updateCounts() {
-        intLikes.text = formatNumber(likeCount)
-        intSent.text = formatNumber(shareCount)
-        intLook.text = formatNumber(viewCount)
+    private fun updateCounts(binding: ActivityMainBinding) {
+        binding.intLikes.text = formatNumber(likeCount)
+        binding.intSent.text = formatNumber(shareCount)
+        binding.intLook.text = formatNumber(viewCount)
     }
 
     private fun formatNumber(number: Int): String {
